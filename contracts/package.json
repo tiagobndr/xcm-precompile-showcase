@@ -10,14 +10,15 @@
   },
   "main": "dist/index.js",
   "devDependencies": {
+    "@openzeppelin/contracts": "^5.3.0",
     "@parity/revive": "^0.0.7",
-    "@polkadot-labs/hdkd-helpers": "^0.0.10",
     "@polkadot-labs/hdkd": "^0.0.10",
+    "@polkadot-labs/hdkd-helpers": "^0.0.10",
     "@polkadot/api": "^16.4.1",
     "@polkadot/keyring": "^13.5.3",
-    "micro-sr25519": "^0.1.0",
     "@scure/bip32": "^1.6.1",
     "@scure/bip39": "^1.5.1",
+    "micro-sr25519": "^0.1.0",
     "viem": "^2.31.6"
   }
 }

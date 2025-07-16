@@ -58,7 +58,7 @@ export const useDrawingStore = defineStore('drawing', () => {
     if (!canvas.value) return ''
     return canvas.value.toDataURL('image/png')
   }
-
+  /// Use filebase to upload nft metadata
   const uploadToIPFS = async (imageData: string): Promise<string> => {
     try {
       const response = await fetch(imageData)
