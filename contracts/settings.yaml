@@ -1,0 +1,44 @@
+endpoint: wss://testnet-passet-hub.polkadot.io
+mock-signature-host: true
+#block: latest
+db: ./db.sqlite
+import-storage:
+    PolkadotXcm:
+        SafeXcmVersion: 5
+    System:
+        Account: [
+                [
+                    [5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY],
+                    { providers: 1, data: { free: 1000000000000000 } },
+                ], # Alice
+                [
+                    [5Eg2fntQqFi3EvFWAf71G66Ecjjah26bmFzoANAeHFgj9Lia],
+                    { providers: 1, data: { free: 1000000000000000 } },
+                ],
+                [
+                    [5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty],
+                    { providers: 1, data: { free: 1000000000000000 } },
+                ], # Bob
+                [
+                    [5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y],
+                    { providers: 1, data: { free: 1000000000000000 } }, 
+                ], #charlie
+                [
+                    [5HYRCKHYJN9z5xUtfFkyMj4JUhsAwWyvuU8vKB1FcnYTf9ZQ], # Viem
+                    { providers: 1, data: { free: 1000000000000000 } },
+                ],
+                [
+                    [5CSC3FKhsJZtxuKwLrsTn4PYC9KuXFQgqzpWQDRLaSEAWhaz], # PJS
+                    { providers: 1, data: { free: 1000000000000000 } },
+                ],
+                [
+                    [5GQcEQoUZ739HMMYe5rmgQMoLi3or3KyXaYyQfnqsVAUqM9h], # CallXcmPrecompile Contract
+                    { providers: 1, data: { free: 1000000000000000 } },
+                ],
+            ]
+    Assets:
+        Account:
+            - [[1984, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 1000000000 }]
+            - [[1984, 5Eg2fntSSE9VPsfxjgvpoZCoPo2uquZaYwmNDDV91bxUxEt7], { balance: 1000000000 }] # SA of Penpal chain
+
+        Asset: [[[1984], { supply: 4000000000 }]]

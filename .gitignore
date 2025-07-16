@@ -1,1 +1,20 @@
-**/node_modules/
+# Allow a dummy project in this directory for testing purposes
+dummy-project
+
+# Dependency directories
+node_modules/
+pnpm-lock.json
+.pnpm-store
+
+# Build files
+dist
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+
+# Other
+.vscode/
+.DS_Store
+*.code-workspace
