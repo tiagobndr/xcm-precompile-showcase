@@ -1,0 +1,43 @@
+{
+  "name": "not-really-a-cross-chain-token-dapp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vite",
+    "generate": "npx wagmi generate",
+    "build": "npm run generate && npx tsc -b && npx vite build",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "preview": "npx vite preview"
+  },
+  "dependencies": {
+    "@polkadot-api/descriptors": "file:.papi/descriptors",
+    "@wagmi/connectors": "^5.8.5",
+    "@wagmi/core": "^2.17.3",
+    "polkadot-api": "^1.15.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "viem": "^2.31.7",
+    "wagmi": "^2.15.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@tanstack/react-query": "^5.81.5",
+    "@types/node": "^22.16.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "@wagmi/cli": "^2.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.14.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.11.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.12.2",
+    "vite": "^7.0.4"
+  }
+}
