@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+
 /// @dev The on-chain address of the XCM (Cross-Consensus Messaging) precompile.
 address constant XCM_PRECOMPILE_ADDRESS = address(0xA0000);
 
@@ -49,8 +49,6 @@ interface IXcm {
 /// @dev NFT marketplace contract enabling cross-chain trading via XCM messages
 /// @notice Allows minting NFTs with listing fees and trading via cross-chain messaging
 contract XcmNFTMarketPlace is ERC721URIStorage, ERC721Holder {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
 
     /// @dev Emitted when an NFT is successfully traded via XCM
     /// @param tokenId The ID of the traded NFT
@@ -88,6 +86,9 @@ contract XcmNFTMarketPlace is ERC721URIStorage, ERC721Holder {
     /// @dev Minimum ether required to list/mint an NFT
     uint256 public MIN_LISTING_COST = 0.5 ether;
 
+    /// @dev token counter for nft ids
+     uint256 public counter;
+
     /// @dev Initializes the NFT marketplace contract
     constructor() ERC721("XCM NFT MarketPlace", "XCMNFT") {}
 
@@ -97,7 +98,7 @@ contract XcmNFTMarketPlace is ERC721URIStorage, ERC721Holder {
     /// @notice Automatically adds the minted NFT to the sender's collection
     function mintNFT(string memory tokenURI) public payable {
         require(msg.value == MIN_LISTING_COST, NotEnoughEther());
-        uint256 tokenId = _tokenIds.current();
+        uint256 tokenId = ++counter;
         _mint(msg.sender, tokenId);
         _setTokenURI(tokenId, tokenURI);
         playerNFTs[msg.sender].push(tokenId);
