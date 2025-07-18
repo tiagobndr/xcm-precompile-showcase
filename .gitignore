@@ -25,3 +25,5 @@ dist-ssr
 
 contracts/artifacts-pvm
 contracts/cache-pvm
+
+frontend/.papi

@@ -98,7 +98,7 @@ export function ContractData(params: {
       </p>
 
       {params.userAddresses && params.userAddresses.length > 0 && (
-        <div className="border rounded-md my-5 p-2 w-full align-top">
+        <div className="my-5 p-2 w-full align-top">
           <h3 className="font-bold text-lg">Balances</h3>
           <div className="w-full grid grid-cols-2">
             {balances
@@ -115,17 +115,19 @@ export function ContractData(params: {
         </div>
       )}
 
-      <Mint
-        contractAddress={params.contractAddress}
-        decimals={decimals}
-        symbol={tokenName}
-      />
+      <div className="flex flex-row gap-4 justify-center items-stretch">
+        <Mint
+          contractAddress={params.contractAddress}
+          decimals={decimals}
+          symbol={tokenName}
+        />
 
-      <Redeem
-        contractAddress={params.contractAddress}
-        decimals={decimals}
-        symbol={tokenName}
-      />
+        <Redeem
+          contractAddress={params.contractAddress}
+          decimals={decimals}
+          symbol={tokenName}
+        />
+      </div>
     </>
   );
 }

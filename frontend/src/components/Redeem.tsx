@@ -2,32 +2,29 @@ import { notReallyACrossChainTokenModuleNotReallyACrossChainTokenAbi } from "../
 import { useWriteContract } from "wagmi";
 
 import { useState } from "react";
+import { generateXcmMessage } from "../utils/get-XCM-message";
 
 export function Redeem(params: {
   contractAddress: `0x${string}`;
   decimals: number;
   symbol: string;
 }) {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<bigint>(0n);
   const [chainId, setChainId] = useState(0);
-  const [address, setAddress] = useState<`0x${string}`>(
-    "0x932217f9faf715808c1f76eA9EeAb7026806C963",
-  );
-
-  const message = "0x00"; // TODO: Construct XCM message
 
   const { writeContract, status, data, error } = useWriteContract();
 
-  type ChainLabel = "People" | "Coretime" | "Relay Chain";
+  type ChainLabel = "Asset Hub" | "People" | "Coretime" | "Relay Chain";
 
   const chainOptions: Record<ChainLabel, number | null> = {
+    "Asset Hub": 1000,
     People: 1004,
     Coretime: 1005,
     "Relay Chain": null,
   };
 
   return (
-    <div className="border rounded-md my-5 mx-2 p-2 w-fit inline-block">
+    <div className="my-5 mx-2 p-2 w-fit inline-block">
       <h3 className="px-2 block mb-2 font-bold text-lg">
         Reedem {params.symbol}s to PAS
       </h3>
@@ -70,7 +67,9 @@ export function Redeem(params: {
           id="amount"
           type="number"
           placeholder="0"
-          onChange={(e) => setAmount(Number(e.target.value))}
+          onChange={(e) =>
+            setAmount(BigInt(e.target.value) * 10n ** BigInt(params.decimals))
+          }
           disabled={status === "pending"}
           className="
             border rounded-md padding-1 pl-2 h-10 w-[400px]
@@ -80,14 +79,20 @@ export function Redeem(params: {
       </div>
 
       <button
-        onClick={() =>
+        onClick={async () => {
+          const message = await generateXcmMessage(
+            "5CPWuyB5HLfEx2SVKXp4CvyjRBta7GKu2X3GUNSVjJtNMapa", // TODO
+            chainId,
+            amount / 10n ** BigInt(params.decimals - 10), // Convert to 10 decimals (used on PAsset Hub and Paseo)
+          );
+
           writeContract({
             address: params.contractAddress,
             abi: notReallyACrossChainTokenModuleNotReallyACrossChainTokenAbi,
             functionName: "redeem",
-            args: [BigInt(amount), message],
-          })
-        }
+            args: [amount, message as `0x${string}`],
+          });
+        }}
         disabled={status === "pending"}
         className="
         my-0 mx-3 h-10 py-0

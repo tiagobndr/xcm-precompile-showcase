@@ -23,8 +23,6 @@ function App() {
       />
       {accountData.connector !== undefined ? (
         <div className="container mx-auto p-2 leading-6">
-          <h2 className="text-2xl font-bold">Success!</h2>
-          <p>Metamask wallet connected!</p>
           <p>
             Connected to chain ID:{" "}
             <span className="font-bold">{accountData.chainId}</span>

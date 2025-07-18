@@ -16,7 +16,7 @@ export function Mint(params: {
   const { writeContract, status, data, error } = useWriteContract();
 
   return (
-    <div className="border rounded-md my-5 mx-2 p-2 w-fit inline-block">
+    <div className="my-5 mx-2 p-2 w-fit inline-block">
       <h3 className="px-2 block mb-2 font-bold text-lg">
         Mint {params.symbol}s
       </h3>
